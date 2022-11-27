@@ -13,7 +13,7 @@ int UserId = 0;
 int UserSeg = 0;
 int UserFuel = 0;
 int UserTime = 0;
-var CurretTime = DateTime.Now.ToString("MM.dd.yyyy");
+
 
 
 
@@ -98,19 +98,7 @@ if (Answer1 == 3)
 
 if (g == 1)
 {
-    Console.ForegroundColor = ConsoleColor.Yellow;
-    Console.WriteLine("UMOWA WYNAJMU POJAZDU");
-    Console.WriteLine("DATA ZAWARCIA: " + CurretTime);
-    Console.WriteLine("-----------------------------------");
-    Console.Write("WYNAJMUJĄCY: ");
-    main.GetById(UserId);
-    Console.WriteLine("RODZAJ POJAZDU: " + main.GetCar(UserSeg, UserFuel));
-    Console.WriteLine("RODZAJ PALIWA: " + main.GetFuel(UserFuel));
-    Console.WriteLine("-----------------------------------");
-    Console.WriteLine("SEGMENT: " + main.GetSegment(UserSeg));
-    var ZworotTime = DateTime.Now.AddDays(UserTime).ToString("MM.dd.yyyy");
-    Console.WriteLine("DATA ZWROTU POJAZDU: " + ZworotTime);
-    main.GetPrice(UserSeg, UserFuel, UserTime);
+    message.LastMessage(main.GetById(UserId), main.GetCar(UserSeg, UserFuel), main.GetFuel(UserFuel), main.GetPrice(UserSeg, UserFuel, UserTime), main.GetSegment(UserSeg),UserTime);
 }
 
 

@@ -88,6 +88,23 @@ namespace Zaliczenia
             Console.ResetColor();
             Console.ReadLine();
         }
+        public void LastMessage(string Name, string Car, string Fuel, string Price, string Segment, int UserTime)
+        {
+            var CurretTime = DateTime.Now.ToString("MM.dd.yyyy");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("UMOWA WYNAJMU POJAZDU");
+            Console.WriteLine("DATA ZAWARCIA: " + CurretTime);
+            Console.WriteLine("-----------------------------------");
+            Console.Write("WYNAJMUJĄCY: ");
+            Console.WriteLine(Name);
+            Console.WriteLine("RODZAJ POJAZDU: " + Car);
+            Console.WriteLine("RODZAJ PALIWA: " + Fuel);
+            Console.WriteLine("-----------------------------------");
+            Console.WriteLine("SEGMENT: " + Segment);
+            var ZworotTime = DateTime.Now.AddDays(UserTime).ToString("MM.dd.yyyy");
+            Console.WriteLine("DATA ZWROTU POJAZDU: " + ZworotTime);
+            Console.WriteLine(Price);
+        }
 
 
     }

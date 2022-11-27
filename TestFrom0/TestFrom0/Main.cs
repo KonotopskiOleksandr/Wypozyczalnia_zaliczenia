@@ -155,10 +155,9 @@ namespace Zaliczenia
             Cars.Add(new AllCars(10, "Tesla Model S", "premium", "elektryczny", 350, "dostępny"));
             List<AllCars> Select = Cars.Where(q => q.Segment == GetSegment(Seg)).ToList();
             List<AllCars> Select2 = Select.Where(q => q.Fuel == GetFuel(Fuel)).ToList();
-            string Marka = Select2[0].Marka;
-            return Marka;
+            return Select2[0].Marka;
         }
-        public void GetPrice(int Seg, int Fuel, int Time)
+        public string GetPrice(int Seg, int Fuel, int Time)
         {
             List<AllCars> Cars = new List<AllCars>();
             Cars.Add(new AllCars(1, "Škoda Citigo", "mini", "benzyna", 70, "dostępny"));
@@ -173,11 +172,10 @@ namespace Zaliczenia
             Cars.Add(new AllCars(10, "Tesla Model S", "premium", "elektryczny", 350, "dostępny"));
             List<AllCars> Select = Cars.Where(q => q.Segment == GetSegment(Seg)).ToList();
             List<AllCars> Select2 = Select.Where(q => q.Fuel == GetFuel(Fuel)).ToList();
-
             int A = Select2[0].PerHR * Time;
-            Console.WriteLine("OPŁATA:" + A + "PLN");
+            return "OPŁATA:" + A + "PLN";
         }
-        public void GetById(int b)
+        public string GetById(int b)
         {
             List<AllUsers> Users = new List<AllUsers>();
             Users.Add(new AllUsers(1, "Jan", " Nowak", "04.03.2021 r."));
@@ -186,7 +184,7 @@ namespace Zaliczenia
             Users.Add(new AllUsers(4, "Zofia", " Plucińska", "29.04.2020 r."));
             Users.Add(new AllUsers(5, "Grzegorz", " Braun", "12.07.2015 r."));
             List<AllUsers> Select = Users.Where(q => q.Id == b).ToList();
-            Console.WriteLine(Select[0].FullName);
+            return Select[0].FullName;
             
         }
     }
