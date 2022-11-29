@@ -1,0 +1,15 @@
+C:\Users\user\source\repos\Wypozyczalnia_zaliczenia\Renta\Renta\bin\Debug\net6.0\Zaliczenia.exe
+C:\Users\user\source\repos\Wypozyczalnia_zaliczenia\Renta\Renta\bin\Debug\net6.0\Zaliczenia.deps.json
+C:\Users\user\source\repos\Wypozyczalnia_zaliczenia\Renta\Renta\bin\Debug\net6.0\Zaliczenia.runtimeconfig.json
+C:\Users\user\source\repos\Wypozyczalnia_zaliczenia\Renta\Renta\bin\Debug\net6.0\Zaliczenia.dll
+C:\Users\user\source\repos\Wypozyczalnia_zaliczenia\Renta\Renta\bin\Debug\net6.0\Zaliczenia.pdb
+C:\Users\user\source\repos\Wypozyczalnia_zaliczenia\Renta\Renta\obj\Debug\net6.0\Zaliczenia.csproj.AssemblyReference.cache
+C:\Users\user\source\repos\Wypozyczalnia_zaliczenia\Renta\Renta\obj\Debug\net6.0\Zaliczenia.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user\source\repos\Wypozyczalnia_zaliczenia\Renta\Renta\obj\Debug\net6.0\Zaliczenia.AssemblyInfoInputs.cache
+C:\Users\user\source\repos\Wypozyczalnia_zaliczenia\Renta\Renta\obj\Debug\net6.0\Zaliczenia.AssemblyInfo.cs
+C:\Users\user\source\repos\Wypozyczalnia_zaliczenia\Renta\Renta\obj\Debug\net6.0\Zaliczenia.csproj.CoreCompileInputs.cache
+C:\Users\user\source\repos\Wypozyczalnia_zaliczenia\Renta\Renta\obj\Debug\net6.0\Zaliczenia.dll
+C:\Users\user\source\repos\Wypozyczalnia_zaliczenia\Renta\Renta\obj\Debug\net6.0\refint\Zaliczenia.dll
+C:\Users\user\source\repos\Wypozyczalnia_zaliczenia\Renta\Renta\obj\Debug\net6.0\Zaliczenia.pdb
+C:\Users\user\source\repos\Wypozyczalnia_zaliczenia\Renta\Renta\obj\Debug\net6.0\Zaliczenia.genruntimeconfig.cache
+C:\Users\user\source\repos\Wypozyczalnia_zaliczenia\Renta\Renta\obj\Debug\net6.0\ref\Zaliczenia.dll
