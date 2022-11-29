@@ -5,7 +5,7 @@ using Zaliczenia;
 var message = new Message();
 var main = new Main();
 
-
+//test
 
 int z = 0;
 int g = 0;
