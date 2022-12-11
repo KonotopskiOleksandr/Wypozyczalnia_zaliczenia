@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,39 +10,23 @@ namespace Zaliczenia
 {
     public class Main
     {
+        public Main()
+        {
+            Base.CreateLists();
+            Base.AddTime();
+        }
         public void ShowUsers()
         {
-            List<AllUsers> Users = new List<AllUsers>();
-            Users.Add(new AllUsers(1, "Jan", " Nowak", "04.03.2021 r."));
-            Users.Add(new AllUsers(2, "Agnieszka", " Kowalska", "15.01.1999 r."));
-            Users.Add(new AllUsers(3, "Robert", " Lewandowski", "18.12.2010 r."));
-            Users.Add(new AllUsers(4, "Zofia", " Plucińska", "29.04.2020 r."));
-            Users.Add(new AllUsers(5, "Grzegorz", " Braun", "12.07.2015 r."));
-            for (int i = 0; i < Users.Count; i++)
+            foreach (var User in Base.Users)
             {
-                var B = Users[i].FirstName + Users[i].LastName;
-                Console.WriteLine((Users[i].Id) + " | " + B + "  | " + Users[i].Time);
+                Console.WriteLine($"{User.Id} |  {User.FullName} | {User.Time}");
             }
         }
         public void ShowCars()
         {
-            List<AllCars> Cars1 = new List<AllCars>();
-            Cars1.Add(new AllCars(1, "Škoda Citigo", "mini", "benzyna", 70, "dostępny"));
-            Cars1.Add(new AllCars(2, "Toyota Aygo", "mini", "benzyna", 90, "dostępny"));
-            Cars1.Add(new AllCars(3, "Fiat 500 ", "mini", "elektryczny", 110, " dostępny"));
-            Cars1.Add(new AllCars(4, "Ford Focus", "kompakt", "diesel", 160, "dostępny"));
-            Cars1.Add(new AllCars(5, "Kia Ceed", "kompakt", "benzyna", 150, "dostępny"));
-            Cars1.Add(new AllCars(6, "Volkswagen Golf", "kompakt", "benzyna", 160, "dostępny"));
-            Cars1.Add(new AllCars(7, "Hyundai Kona", "kompakt", "elektryczny", 180, "dostępny"));
-            Cars1.Add(new AllCars(8, "Audi A6 Allroad", "premium", "diesel", 290, "dostępny"));
-            Cars1.Add(new AllCars(9, "Mercedes E270 AMG ", "premium", "benzyna", 320, "dostępny"));
-            Cars1.Add(new AllCars(10, "Tesla Model S", "premium", "elektryczny", 350, "dostępny"));
-            foreach (var item in Cars1)
+            foreach (var item in Base.Cars)
             {
                 Console.WriteLine($"{item.Id} | {item.Marka} | {item.Segment} | {item.Fuel}  |  {item.Price} | {item.Status}");
-            }
-            {
-
             }
         }
         public void Var1()
@@ -58,7 +44,7 @@ namespace Zaliczenia
             Console.WriteLine();
             ShowCars();
         }
-        public int FirstAnswer()
+        public static int FirstAnswer()
         {
             var FirstAnswer = Console.ReadLine();
             int.TryParse(FirstAnswer, out int result);
@@ -79,19 +65,6 @@ namespace Zaliczenia
                 return -1;
             }
         }
-        public int IsInt(string A)
-        {
-            int.TryParse(A, out int result);
-            if (result <= 5 && result > 0)
-            {
-                return result;
-            }
-            else
-            {
-                return -1;
-            }
-
-        }
         public int Is3(string A)
         {
             int.TryParse(A, out int result);
@@ -105,7 +78,20 @@ namespace Zaliczenia
             }
 
         }
-        public string GetSegment(int x)
+        public int Is2(string A)
+        {
+            int.TryParse(A, out int result);
+            if (result <= 2 && result > 0)
+            {
+                return result;
+            }
+            else
+            {
+                return -1;
+            }
+
+        }
+        public static string GetSegment(int x)
         {
             if (x == 1)
             {
@@ -124,7 +110,7 @@ namespace Zaliczenia
                 return "";
             }
         }
-        public string GetFuel(int x)
+        public static string GetFuel(int x)
         {
             if (x == 1)
             {
@@ -143,52 +129,58 @@ namespace Zaliczenia
                 return "";
             }
         }
-        public string GetCar(int Seg, int Fuel)
+        public bool GetCar(int Seg, int Fuel)
         {
-            List<AllCars> Cars = new List<AllCars>();
-            Cars.Add(new AllCars(1, "Škoda Citigo", "mini", "benzyna", 70, "dostępny"));
-            Cars.Add(new AllCars(2, "Toyota Aygo", "mini", "benzyna", 90, "dostępny"));
-            Cars.Add(new AllCars(3, "Fiat 500 ", "mini", "elektryczny", 110, " dostępny"));
-            Cars.Add(new AllCars(4, "Ford Focus", "kompakt", "diesel", 160, "dostępny"));
-            Cars.Add(new AllCars(5, "Kia Ceed", "kompakt", "benzyna", 150, "dostępny"));
-            Cars.Add(new AllCars(6, "Volkswagen Golf", "kompakt", "benzyna", 160, "dostępny"));
-            Cars.Add(new AllCars(7, "Hyundai Kona", "kompakt", "elektryczny", 180, "dostępny"));
-            Cars.Add(new AllCars(8, "Audi A6 Allroad", "premium", "diesel", 290, "dostępny"));
-            Cars.Add(new AllCars(9, "Mercedes E270 AMG ", "premium", "benzyna", 320, "dostępny"));
-            Cars.Add(new AllCars(10, "Tesla Model S", "premium", "elektryczny", 350, "dostępny"));
-            List<AllCars> Select = Cars.Where(q => q.Segment == GetSegment(Seg)).ToList();
-            List<AllCars> Select2 = Select.Where(q => q.Fuel == GetFuel(Fuel)).ToList();
-            return Select2[0].Marka;
+            var Select = Base.Cars.Where(q => q.Segment == GetSegment(Seg) && q.Fuel == GetFuel(Fuel) && q.Status == "dostępny").LastOrDefault();
+            if (Select != null)
+            {
+                Base.SelectedCars.Add(Select); ;
+                Base.Cars[Select.Id - 1].Status = "Niedostępny";
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
-        public string GetPrice(int Seg, int Fuel, int Time)
-        {
-            List<AllCars> Cars = new List<AllCars>();
-            Cars.Add(new AllCars(1, "Škoda Citigo", "mini", "benzyna", 70, "dostępny"));
-            Cars.Add(new AllCars(2, "Toyota Aygo", "mini", "benzyna", 90, "dostępny"));
-            Cars.Add(new AllCars(3, "Fiat 500 ", "mini", "elektryczny", 110, " dostępny"));
-            Cars.Add(new AllCars(4, "Ford Focus", "kompakt", "diesel", 160, "dostępny"));
-            Cars.Add(new AllCars(5, "Kia Ceed", "kompakt", "benzyna", 150, "dostępny"));
-            Cars.Add(new AllCars(6, "Volkswagen Golf", "kompakt", "benzyna", 160, "dostępny"));
-            Cars.Add(new AllCars(7, "Hyundai Kona", "kompakt", "elektryczny", 180, "dostępny"));
-            Cars.Add(new AllCars(8, "Audi A6 Allroad", "premium", "diesel", 290, "dostępny"));
-            Cars.Add(new AllCars(9, "Mercedes E270 AMG ", "premium", "benzyna", 320, "dostępny"));
-            Cars.Add(new AllCars(10, "Tesla Model S", "premium", "elektryczny", 350, "dostępny"));
-            List<AllCars> Select = Cars.Where(q => q.Segment == GetSegment(Seg)).ToList();
-            List<AllCars> Select2 = Select.Where(q => q.Fuel == GetFuel(Fuel)).ToList();
-            int A = Select2[0].PerHR * Time;
-            return "OPŁATA:" + A + "PLN";
+        public static int Difference(int UserID)
+        { 
+            var Difference = DateTime.Now.Year - Base.Users[UserID-1].Test.Year;
+            return Difference;
         }
-        public string GetById(int b)
+        public static bool AnyCar()
         {
-            List<AllUsers> Users = new List<AllUsers>();
-            Users.Add(new AllUsers(1, "Jan", " Nowak", "04.03.2021 r."));
-            Users.Add(new AllUsers(2, "Agnieszka", " Kowalska", "15.01.1999 r."));
-            Users.Add(new AllUsers(3, "Robert", " Lewandowski", "18.12.2010 r."));
-            Users.Add(new AllUsers(4, "Zofia", " Plucińska", "29.04.2020 r."));
-            Users.Add(new AllUsers(5, "Grzegorz", " Braun", "12.07.2015 r."));
-            List<AllUsers> Select = Users.Where(q => q.Id == b).ToList();
-            return Select[0].FullName;
+            if (Base.SelectedCars.Count > 0)
+            {
+                return true;
+            }
+            else 
+            {
+                return false;
+            }
+        }
 
+        public string GetPrice(int UserTIME, int UserID)
+        {
+            if (UserTIME > 7)
+            {
+                UserTIME--;
+            }
+            if (UserTIME > 29)
+            {
+                UserTIME = UserTIME - 2;
+            }
+            if (Difference(UserID) < 4)
+            {
+                decimal A = Base.SelectedCars.Last().PerHR * UserTIME;
+                A = A / 100 * 120;
+                return $"OPŁATA {A} PLN ";
+            }
+            else
+            {
+                decimal A = Base.SelectedCars.Last().PerHR * UserTIME;
+                return $"OPŁATA {A} PLN ";
+            }
         }
     }
 }

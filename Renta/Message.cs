@@ -29,6 +29,24 @@ namespace Zaliczenia
             Console.WriteLine("2. kompakt");
             Console.WriteLine("3. premium");
         }
+        public void PodajSegmentBezPremium()
+        {
+            Console.Clear();
+            Console.WriteLine("PODAJ SEGMENT SAMOCHODU:");
+            Console.WriteLine("1. mini");
+            Console.WriteLine("2. kompakt");
+        }
+        public void TakeSegment(int UserID)
+        {
+            if (Main.Difference(UserID) > 4)
+            {
+                PodajSegment();
+            }
+            else
+            {
+                PodajSegmentBezPremium();
+            }
+        }
         public void PodajFuel()
         {
             Console.Clear();
@@ -88,27 +106,45 @@ namespace Zaliczenia
             Console.ResetColor();
             Console.ReadLine();
         }
-        public void LastMessage(string Name, string Car, string Fuel, string Price, string Segment, int UserTime)
+        public void LastMessage(string Time, int UserTime,int UserId)
         {
-            var CurretTime = DateTime.Now.ToString("MM.dd.yyyy");
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("UMOWA WYNAJMU POJAZDU");
-            Console.WriteLine("DATA ZAWARCIA: " + CurretTime);
-            Console.WriteLine("-----------------------------------");
-            Console.Write("WYNAJMUJĄCY: ");
-            Console.WriteLine(Name);
-            Console.WriteLine("RODZAJ POJAZDU: " + Car);
-            Console.WriteLine("RODZAJ PALIWA: " + Fuel);
-            Console.WriteLine("-----------------------------------");
-            Console.WriteLine("SEGMENT: " + Segment);
-            var ZworotTime = DateTime.Now.AddDays(UserTime).ToString("MM.dd.yyyy");
-            Console.WriteLine("DATA ZWROTU POJAZDU: " + ZworotTime);
-            Console.WriteLine(Price);
+            if (Main.AnyCar())
+            {
+                var CurretTime = DateTime.Now.ToString("dd.MM.yyyy");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("UMOWA WYNAJMU POJAZDU");
+                Console.WriteLine("DATA ZAWARCIA: " + CurretTime);
+                Console.WriteLine("-----------------------------------");
+                Console.Write("WYNAJMUJĄCY: ");
+                Console.WriteLine(Base.Users[UserId - 1].FullName);
+                Console.WriteLine($"RODZAJ POJAZDU:  {Base.SelectedCars.Last().Marka}");
+                Console.WriteLine("RODZAJ PALIWA: " + Base.SelectedCars.Last().Fuel);
+                Console.WriteLine("SEGMENT: " + Base.SelectedCars.Last().Segment);
+                Console.WriteLine("-----------------------------------");
+                var ZworotTime = DateTime.Now.AddDays(UserTime).ToString("dd.MM.yyyy");
+                Console.WriteLine("DATA ZWROTU POJAZDU: " + ZworotTime);
+                Console.WriteLine(Time);
+            }
+            else
+            {
+                Console.WriteLine("Error!");
+            }
         }
         public void OpenMenu()
         {
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine();
+            Console.WriteLine("Naciśnij ENTER aby otworzyć menu");
+            Console.ReadKey();
+            Console.ResetColor();
+            Console.Clear();
+        }
+        public void DontHaveAnyCar()
+        {
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Clear();
+            Console.WriteLine();
+            Console.WriteLine("Niestety nie mamy takich samochodów");
             Console.WriteLine("Naciśnij ENTER aby otworzyć menu");
             Console.Read();
             Console.ResetColor();

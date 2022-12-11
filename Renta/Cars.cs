@@ -8,7 +8,7 @@ namespace Zaliczenia
 {
     public class AllCars
     {
-        public AllCars(int id, string marka, string segment, string fuel, int perHR, string status)
+        public AllCars(int id, string marka, string segment, string fuel, decimal perHR, string status)
         {
             Id = id;
             Marka = marka;
@@ -21,7 +21,7 @@ namespace Zaliczenia
         public string Marka { get; set; }
         public string Segment { get; set; }
         public string Fuel { get; set; }
-        public int PerHR { get; set; }
+        public decimal PerHR { get; set; }
         public string Status { get; set; }
         public string Price
         {
