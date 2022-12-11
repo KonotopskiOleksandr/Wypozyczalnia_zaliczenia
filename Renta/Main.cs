@@ -135,7 +135,7 @@ namespace Zaliczenia
             if (Select != null)
             {
                 Base.SelectedCars.Add(Select); ;
-                Base.Cars[Select.Id - 1].Status = "Niedostępny";
+                Base.Cars[Select.Id - 1].Status = "niedostępny";
                 return true;
             }
             else
