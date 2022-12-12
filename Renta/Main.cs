@@ -13,7 +13,6 @@ namespace Zaliczenia
         public Main()
         {
             Base.CreateLists();
-            Base.AddTime();
         }
         public void ShowUsers()
         {
@@ -145,7 +144,7 @@ namespace Zaliczenia
         }
         public static int Difference(int UserID)
         { 
-            var Difference = DateTime.Now.Year - Base.Users[UserID-1].Test.Year;
+            var Difference = DateTime.Now.Year - Base.Users[UserID-1].License.Year;
             return Difference;
         }
         public static bool AnyCar()
